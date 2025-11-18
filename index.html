@@ -11,27 +11,20 @@
             background: #111;
             display: flex;
             justify-content: center;
-        }
-        
-        .calc {
-            width: 280px !important;
-        }
-        
-        body {
             align-items: center;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
         }
-        
+
         .calc {
-            width: 320px;
+            width: 300px; /* ✔ pevná šířka = symetrie */
             background: #222;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px #000;
         }
-        
+
         #display {
             width: 100%;
             height: 60px;
@@ -44,13 +37,13 @@
             margin-bottom: 15px;
             overflow-x: auto;
         }
-        
+
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
         }
-        
+
         button {
             padding: 20px;
             font-size: 1.3rem;
@@ -61,33 +54,25 @@
             cursor: pointer;
             transition: 0.1s;
         }
-        
+
         button:hover {
             background: #444;
         }
-        
+
         .operator {
             background: #ff8c00;
         }
-        
+
         .operator:hover {
             background: #e07a00;
         }
-        
+
         .equals {
             background: #1e90ff;
         }
-        
+
         .equals:hover {
             background: #1a7ed1;
-        }
-        
-        .clear {
-            background: #333;
-        }
-        
-        .clear:hover {
-            background: #333;
         }
     </style>
 </head>
@@ -98,7 +83,7 @@
         <div id="display">0</div>
 
         <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">AC</button>
+            <button onclick="clearDisplay()">AC</button>
             <button onclick="deleteLast()">DEL</button>
             <button onclick="append('%')">%</button>
             <button class="operator" onclick="append('/')">÷</button>
@@ -146,7 +131,7 @@
 
         function calculate() {
             try {
-                let result = eval(display.textContent.replace("÷", "/").replace("×", "*"));
+                let result = eval(display.textContent);
                 display.textContent = result;
             } catch {
                 display.textContent = "Error";
